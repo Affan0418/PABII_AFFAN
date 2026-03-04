@@ -9,9 +9,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(movie.title),
-      ),
+      appBar: AppBar(title: Text(movie.title)),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(

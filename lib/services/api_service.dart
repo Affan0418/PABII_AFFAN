@@ -6,26 +6,34 @@ class ApiService {
   static const String apikey = "f2907b7a9c18a29d6a38de7e08c3dece";
 
   Future<List<Map<String, dynamic>>> getAllMovies() async {
-    final response = await http.get
-      (Uri.parse("$baseUrl/movie/now_playing?api_key=$apikey"),
-      );
-      final data = jsonDecode(response.body);
-      return List<Map<String, dynamic>>.from(data['results']);
-      }
-      
+    final response = await http.get(
+      Uri.parse("$baseUrl/movie/now_playing?api_key=$apikey"),
+    );
+    final data = jsonDecode(response.body);
+    return List<Map<String, dynamic>>.from(data['results']);
+  }
+
   Future<List<Map<String, dynamic>>> getTrendingMovies() async {
-    final response = await http.get
-      (Uri.parse("$baseUrl/trending/movie/week?api_key=$apikey"),
-      );
-      final data = jsonDecode(response.body);
-      return List<Map<String, dynamic>>.from(data['results']);
-      }
+    final response = await http.get(
+      Uri.parse("$baseUrl/trending/movie/week?api_key=$apikey"),
+    );
+    final data = jsonDecode(response.body);
+    return List<Map<String, dynamic>>.from(data['results']);
+  }
 
   Future<List<Map<String, dynamic>>> getPopularMovies() async {
-    final response = await http.get
-      (Uri.parse("$baseUrl/movie/popular?api_key=$apikey"),
-      );
-      final data = jsonDecode(response.body);
-      return List<Map<String, dynamic>>.from(data['results']);
-      }
-    }
+    final response = await http.get(
+      Uri.parse("$baseUrl/movie/popular?api_key=$apikey"),
+    );
+    final data = jsonDecode(response.body);
+    return List<Map<String, dynamic>>.from(data['results']);
+  }
+
+  Future<List<Map<String, dynamic>>> searchMovies(String query) async {
+    final response = await http.get(
+      Uri.parse("$baseUrl/search/movie?query=$query&api_key=$apikey"),
+    );
+    final data = json.decode(response.body);
+    return List<Map<String, dynamic>>.from(data['results']);
+  }
+}
